@@ -1,9 +1,26 @@
+@import url(./index.css);
+
+
+:root {
+  --bg-00: #1D1D1B;
+  --bg-10: #4B4B4B;
+  --bg-gradient-primary: linear-gradient(90deg, #006299 0%, #006299 0.01%, #1C99DF 100%);
+  --bg-gradient-secondary: linear-gradient(90deg, #1A87A9 0%, #BB47CE 62.5%, #CE47A8 87.5%);
+
+  --color-primary-00: #BA2C92;
+  --color-text-00: #EFEFEF;
+  --color-text-10: #afafaf;
+}
+
 html,
+h1,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: var(--bg-00);
+  color: var(--color-text-00)
 }
 
 a {
