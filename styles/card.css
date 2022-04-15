@@ -1,0 +1,20 @@
+.vote__cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--bg-gradient-secondary);
+  border-radius: 0.5rem;
+}
+
+.card__bts {
+  display: flex;
+  justify-content: flex-end;
+}

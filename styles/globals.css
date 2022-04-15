@@ -1,4 +1,5 @@
 @import url(./index.css);
+@import url(./card.css);
 
 
 :root {
@@ -30,4 +31,8 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
 }
