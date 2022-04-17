@@ -10,7 +10,7 @@
 .vote__body {
   display: flex;
   flex-direction: column;
-  max-width: 720px;
+  width: min(100%, 600px);
   margin: 3rem;
   gap: 1rem;
 }
