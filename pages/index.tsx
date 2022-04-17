@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react"
-import Card from "../components/template/card";
+import { useEffect, useId, useState } from "react"
 
 export default function Home() {
 
@@ -7,11 +6,6 @@ export default function Home() {
     id?: number,
     title?: string,
     ups?: number
-  }
-
-  const questionMock = {
-    title: "",
-    ups: 0
   }
 
   const cardsMock = [
@@ -32,12 +26,24 @@ export default function Home() {
     }
   ]
 
+  const newIdeaId = useId()
 
-  const [question, setQuestion] = useState<ICard>(questionMock);
+  const [idea, setIdea] = useState<ICard>({
+    id: Number(newIdeaId),
+    title: "",
+    ups: 0
+  });
   const [cardsDesc, setCardsDesc] = useState<ICard[]>(cardsMock)
 
+  const handleSubmit = () => {
+    const newArr = [...cardsDesc]
+    newArr.push(idea)
+    setCardsDesc(newArr)
+    console.log(cardsDesc)
+  }
+
   const reorderCards = () => {
-    let newArr = [...cardsDesc]
+    const newArr = [...cardsDesc]
     newArr.sort(function (a, b) {
       return b.ups - a.ups;
     });
@@ -45,9 +51,8 @@ export default function Home() {
   }
 
   const addUp = (cardId: number, cardUps: number) => {
-
-    let newArr = [...cardsDesc]
-    let searchedCardIndex = cardsDesc.findIndex(card => card.id == cardId);
+    const newArr = [...cardsDesc]
+    const searchedCardIndex = cardsDesc.findIndex(card => card.id == cardId);
     console.log(searchedCardIndex)
     newArr[searchedCardIndex].ups = cardUps + 1
     setCardsDesc(newArr)
@@ -66,16 +71,17 @@ export default function Home() {
         <h1>Qual será nossa próxima talk?</h1>
 
         <input
+          required
           className="vote__field"
           type="text"
           placeholder="Insira sua sugestão"
-          value={question.title}
-          onChange={(e: any) => setQuestion({ title: e.target.value })}
+          value={idea.title}
+          onChange={(e: any) => setIdea({ title: e.target.value })}
         />
-        <button className="bt bt-principal" onClick={() => console.log(question)}>Salvar sugestão</button>
+        <button className="bt bt-principal" onClick={() => handleSubmit()}>Enviar sugestão</button>
 
         <div className="vote__cards">
-          {cardsDesc ? cardsDesc.map((card) => {
+          {cardsDesc.map((card) => {
             return (
               <div className="card" key={card.id}>
                 <b>{card.title}</b>
@@ -84,7 +90,7 @@ export default function Home() {
                 </div>
               </div>
             )
-          }) : null}
+          })}
         </div>
 
       </div>
